@@ -1,4 +1,4 @@
-import { Image, StyleSheet, Text, View, SafeAreaView } from "react-native";
+import { Image, StyleSheet, Text, View, SafeAreaView, Platform } from "react-native";
 import React from "react";
 import { capitalize } from "lodash";
 import getColorByPokemonType from "../../utils/getColorByPokemonType";
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    top: 30, 
+    top: Platform.OS === "android" ? 10 : 30, 
   },
   image: {
     width: 250,
