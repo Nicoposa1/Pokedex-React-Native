@@ -14,8 +14,12 @@ const Header = (props) => {
     <>
       <View style={bgStyle} />
       <SafeAreaView style={styles.content}>
+        <View style={styles.header}>
+          <Text style={styles.name}>{capitalize(name)}</Text>
+          <Text style={styles.order}>#{`${order}`.padStart(3, 0)}</Text>
+        </View>
         <View style={styles.containerImg}>
-          <Image source={{ url: image }} style={styles.image} />
+          <Image source={{ uri: image }} style={styles.image} />
         </View>
       </SafeAreaView>
     </>
@@ -37,6 +41,21 @@ const styles = StyleSheet.create({
     marginHorizontal: 20, 
     marginTop: 30,
   },  
+  header: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingTop: 40,
+  },
+  name: {
+    color: "#fff",
+    fontWeight: "bold",
+    fontSize: 27,
+  },
+  order: {
+    color: "#fff",
+    fontWeight: "bold",
+  },
   containerImg: {
     flex: 1,
     justifyContent: "center",
@@ -45,6 +64,7 @@ const styles = StyleSheet.create({
   },
   image: {
     width: 250,
-    height: 250,
+    height: 300,
+    resizeMode: "contain",
   },
 });
