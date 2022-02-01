@@ -5,7 +5,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 const Favorites = () => {
   return (
     <SafeAreaView >
-      <Text>Favorites</Text>
+      <Text>Favorites 1</Text>
     </SafeAreaView >
   )
 }
