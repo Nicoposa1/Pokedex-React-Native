@@ -4,7 +4,7 @@ import React from 'react';
 const UserData = () => {
   return (
     <View>
-      <Text>Usuario: Nicolás</Text>
+      <Text>Usuario</Text>
     </View>
   );
 };
