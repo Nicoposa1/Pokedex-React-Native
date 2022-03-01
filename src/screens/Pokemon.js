@@ -5,8 +5,11 @@ import Icon from "react-native-vector-icons/FontAwesome5";
 import { Header } from "../components/Pokemon/Header";
 import { Type } from "../components/Pokemon/Type";
 import { Stats } from "../components/Pokemon/Stats";
+import {Favorite} from "../components/Pokemon/Favorite";
+import useAuth from "../hooks/useAuth";
 
 const Pokemon = (props) => {
+  const { auth } = useAuth();
   const {
     navigation,
     route: { params },
@@ -16,7 +19,7 @@ const Pokemon = (props) => {
 
   useEffect(() => {
     navigation.setOptions({
-      headerRight: () => null,
+      headerRight: () => auth && <Favorite id={pokemon?.id} />,
       headerLeft: () => (
         <Icon
           name="arrow-left"
@@ -27,9 +30,9 @@ const Pokemon = (props) => {
         />
       ),
     }),
-      [navigation, params];
+      [navigation, params, pokemon];
   });
-
+  
   useEffect(() => {
     (async () => {
       try {
@@ -40,8 +43,9 @@ const Pokemon = (props) => {
       }
     })();
   }, [params]);
-
+  
   if (!pokemon) return null;
+  
 
   return (
     <ScrollView>
