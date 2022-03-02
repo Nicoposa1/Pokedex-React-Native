@@ -1,12 +1,43 @@
-import React from "react";
-import Icon from "react-native-vector-icons/FontAwesome5";
-import {addPokemonFavoriteApi, getPokemonFavoriteApi} from "../../api/favorite";
+import React, { useState, useEffect } from "react";
+import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
+import {
+  addPokemonFavoriteApi,
+  isPokemonFavoriteApi,
+} from "../../api/favorite";
 
 const Favorite = (props) => {
-  const {id} = props;
+  const { id } = props;
+  const [isFavorite, setIsFavorite] = useState(undefined);
+  const [isLoading, setIsLoading] = useState(false);
+  const Icon = isFavorite ? FontAwesome : FontAwesome5;
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const response = await isPokemonFavoriteApi(id);
+        setIsFavorite(response);
+      } catch (error) {
+        setIsFavorite(false);
+      }
+    })();
+  }, [id, isLoading]);
+
+  const handleLoading = async () => {
+    setIsLoading((prev) => !prev);
+  }
 
   const addFavorite = async () => {
     await addPokemonFavoriteApi(id);
+    try {
+      handleLoading()
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const removeFavorite = async () => {
+    console.log("removeFavorite");
   };
 
   return (
@@ -14,10 +45,10 @@ const Favorite = (props) => {
       name="heart"
       color="#fff"
       size={20}
-      onPress={addFavorite}
+      onPress={isFavorite ? removeFavorite : addFavorite}
       style={{ marginRight: 20 }}
     />
   );
 };
 
-export {Favorite};
+export { Favorite };
