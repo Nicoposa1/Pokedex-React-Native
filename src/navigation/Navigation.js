@@ -33,7 +33,7 @@ const Navigation = () => {
               renderPokeball()
             )
           }}
-        />
+        /> 
         <Tab.Screen
           name="Account"
           component={AccountNavigation}
