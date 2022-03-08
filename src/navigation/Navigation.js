@@ -5,14 +5,12 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { FavoriteNavigation } from "./FavoriteNavigation";
 import { AccountNavigation } from "./AccountNavigation";
 import { PokedexNavigation } from "./PokedexNavigation";
-import { SafeAreaProvider } from "react-native-safe-area-context";
 
 const Tab = createBottomTabNavigator();
 
 const Navigation = () => {
   return (
-    <SafeAreaProvider>
-      <Tab.Navigator>
+      <Tab.Navigator initialRouteName="Pokedex" >
         <Tab.Screen
           name="Favorites"
           component={FavoriteNavigation}
@@ -46,7 +44,6 @@ const Navigation = () => {
           }}
         />
       </Tab.Navigator>
-    </SafeAreaProvider>
   );
 };
 
